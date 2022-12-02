@@ -1,7 +1,8 @@
 fn main() {
     let number = 7;
-    
-    if number < 5 { // condition must be bool - rust doesn't convert non-bool types to bool (good!).
+
+    if number < 5 {
+        // condition must be bool - rust doesn't convert non-bool types to bool (good!).
         println!("condition was true");
     } else {
         println!("condition was false");
@@ -24,7 +25,7 @@ fn main() {
     // if in let
 
     let condition = true;
-    let y = if condition {5} else {6}; // similar to ternary
+    let y = if condition { 5 } else { 6 }; // similar to ternary
 
     println!("{y}");
 
@@ -41,7 +42,7 @@ fn main() {
     // Rust as three kinds of loops - loop, while, and for.
 
     // loop { // this loop will run continuously until manual stopped in terminal
-    //     println!("again!") 
+    //     println!("again!")
     // }
 
     // we can use a break statement to exit a loop:
@@ -49,11 +50,11 @@ fn main() {
     let mut counter = 0;
 
     let result = loop {
-        counter +=1;
+        counter += 1;
 
         if counter == 10 {
             break counter * 2; // note that we place the values we want return immediately following the break statement.
-            // break // if we don't want a return value from our loop, we just include the break statement - the loop returns '()', which is the unit value.
+                               // break // if we don't want a return value from our loop, we just include the break statement - the loop returns '()', which is the unit value.
         }
     };
 
@@ -62,27 +63,27 @@ fn main() {
 
     // LOOP LABELS
 
-    // we can give labels to our loops to more easily keep track of 
+    // we can give labels to our loops to more easily keep track of
     // and interact with specific loops - e.g. when working with
     // nested loops:
 
     let mut new_count = 0;
 
-    'counting_up: loop { // note that the label starts with a single '
+    'counting_up: loop {
+        // note that the label starts with a single '
         println!("new_count = {new_count}");
         let mut remaining = 10;
-
         loop {
             println!("remaining == {remaining}");
             if remaining == 9 {
                 break; // specifies to break current loop.
-            } if new_count == 2 {
+            }
+            if new_count == 2 {
                 break 'counting_up; // specifies to break outer loop.
             }
-            remaining -=1;
+            remaining -= 1;
         }
-
-        new_count += 1 ;
+        new_count += 1;
     }
     println!("End new_count = {new_count}");
 
@@ -93,7 +94,8 @@ fn main() {
 
     let mut value = 3;
 
-    while value != 0 { // checks condition before running block
+    while value != 0 {
+        // checks condition before running block
         println!("{value}!");
 
         value -= 1; // modifies counter for condition.
@@ -110,12 +112,12 @@ fn main() {
     while index < a.len() {
         println!("the value is: {}", a[index]);
 
-        index +=1
+        index += 1
     }
     // using a while loop to loop through our collection.
     // This is error prone - if we get our condition wrong
     // this code could throw a panic.
-    // It also requires an extra step of a conditional check for 
+    // It also requires an extra step of a conditional check for
     // each iteration through the loop.
 
     // FOR LOOPS
@@ -123,7 +125,7 @@ fn main() {
     // Rust has a for loop very similar to JavaScript
 
     let b = [1, 2, 3, 4, 5];
-    
+
     for element in b {
         println!("the value is: {element}");
     }
@@ -132,7 +134,8 @@ fn main() {
     // we can also use for loops with a range to loop a certain
     // number of times:
 
-    for number in (1..4).rev(){ // non inclusive range - .rev() reverses order. inclusive range uses (..=)
+    for number in (1..4).rev() {
+        // non inclusive range - .rev() reverses order. inclusive range uses (..=)
         println!("{number}!");
     }
     println!("LIFTOFF!!");
@@ -144,25 +147,24 @@ fn main() {
     for num in 1..=12 {
         gen_fib(num);
     }
-
 }
 
-fn fahr_to_cel(num: i32) -> i32{
-    (num - 32) * 5/9
+fn fahr_to_cel(num: i32) -> i32 {
+    (num - 32) * 5 / 9
 }
 
 fn gen_fib(num: i32) -> i32 {
-    if num <= 1{
-        return 0
+    if num <= 1 {
+        return 0;
     } else {
         let mut fib = 1;
         let mut prev_fib = 0;
-        for _val in 2..num{
+        for _val in 2..num {
             let current_fib = fib;
             fib = current_fib + prev_fib;
             prev_fib = current_fib;
         }
         println!("{fib}");
-        return fib
+        return fib;
     }
 }
