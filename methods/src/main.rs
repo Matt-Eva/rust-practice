@@ -79,11 +79,19 @@ fn main() {
                 height: size,
             }
         }
+        
+        fn width(&self) {
+            println!("called the method width, which prints the property width: self.width == {}", self.width);
+        }
     }
+
+     // As shown above, we can also have multiple impl blocks. There's no particular reason to in this example, but they are useful when we use generic types and traits.
 
     let square = Rectangle::square(10);
     dbg!(&square);
+    dbg!(square.width()); // note that when we use the parentheses, Rust knows that we're referencing the method on the struct, rather than the property "width" that the struct has.
+    println!(square.width) // The opposite is true for reading the property - absence of parentheses means Rust knows to look for the property.
 
-    // As shown above, we can also have multiple impl blocks. There's no particular reason to in this example, but they are useful when we use generic types and traits.
+   
 
 }
